@@ -1,0 +1,41 @@
+(a) Ramisa Faruque, Chris Fichman, Anthony Gagliardi, Alec Martin
+
+(b) For our project, we created a program which produces the two prime factors (p and q) of any RSA key's n-value. We used Floyd's implementation of Pollard's Rho Algorithm as presented in Sriram's "Pollard's Rho Tutorial." We attempted to use python threading to improve the performance of our factorizer, but we ultimately came to find that our algorithm would never be fast enough to factor the 40 and 60 digit RSA n-values provided in the public keys 3 and 4, unless we used a radically faster algorithm. We decided that quadratic seive would be too complicated to implement within our time budget. The brute force method provided proved to be insufficient to factor even the twenty-digit n-value in public-2.txt within a reasonable time frame, while our implementation took less than one second.
+
+(c) When running our code, all data are passed in as command line arguments in one of two ways:
+	Option one is to simply paste or type the integer to be factored after the script name, e.g.
+		"./factor.py 859082435689".
+	Option two is to paste or type the file path to a text file containing an RSA n-value on each line, e.g.
+		"./factor.py ~/Documents/composite_list.txt".
+
+(d) Messages decrypted using n-values we could factor with our implementation of Pollard's Rho:
+
+Message 1:
+private key:
+n = 515933275087
+d = 515931798493
+plaintext:
+"good job. Yoda passed level 1."
+
+Message 2:
+private key:
+n = 15227063669158801987
+d = 10151375774195144161
+plaintext:
+"Go to Papa John today and ask them for the discreet pizza structures."
+
+The following messages were decrypted using n-values we could not factor with our implementation of Pollard's Rho within five minutes of starting the factorizer, leading us to use Mathematica to derive the correct private keys:
+
+Message 3:
+private key:
+n = 1752806243107435604266281885911174454733
+d = 1752806243107435604177035908227863814617
+plaintext:
+"A problem that may appear in the final for one point: let A and B be two sets that are disjoint. We have |A U B | > |A| + |B|, true or false?"
+
+Message 4:
+private key:
+n = 105413347052657968136568411613469480868402790982610541682723
+d = 46850376467847985838474849605508896661384487587795437270667
+plaintext:
+"One more possible quiz question: Let A,B be two sets with possible elements in common. If A has 10 elements and B has 20 then their union has at least 30 elements. True or False?"
